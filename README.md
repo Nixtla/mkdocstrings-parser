@@ -29,3 +29,11 @@ def my_function(a, b):
 ```sh
 python parser.py
 ```
+
+## cases to be mindful of while creating tests for the parser
+
+- [ ] class with no public methods (datasetsforecast.favorita.CodeTimer)
+  - it documents the instance variables then
+- [X] dataclass
+- [X] pure functions
+- [X] pure functions (with decorator-based docstring)
