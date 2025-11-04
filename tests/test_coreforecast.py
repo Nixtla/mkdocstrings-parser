@@ -1,18 +1,3 @@
-import os
-import sys
-
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-from parser import MkDocstringsParser
-
-import pytest
-
-
-@pytest.fixture
-def setup_parser():
-    parser = MkDocstringsParser()
-    yield parser
-
-
 def test_regular_fn(setup_parser):
     parser = setup_parser
     regular_fn = """::: coreforecast.differences.num_diffs"""
