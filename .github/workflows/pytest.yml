@@ -21,7 +21,7 @@ jobs:
           python-version: 3.11
 
       - name: Install dependencies
-        run: pip install griffe2md rich pytest
+        run: pip install griffe2md rich pyyaml pytest
 
       - name: Run tests
         run: pytest tests
