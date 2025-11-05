@@ -93,26 +93,17 @@ class MkDocstringsParser:
                     if member.docstring:
                         member.docstring.parsed = griffe.parse_google(member.docstring)
 
-            # Create ConfigDict with the options
-            # Adjust default options based on object type
-            if hasattr(obj, "kind") and obj.kind.value == "function":
-                # Configuration for functions
-                default_options = {
-                    "docstring_section_style": "table",
-                    "heading_level": 3,
-                    "show_root_heading": True,
-                    "show_source": True,
-                    "show_signature": True,
-                }
-            else:
+            default_options = {
+                "docstring_section_style": "table",
+                "heading_level": 3,
+                "show_root_heading": True,
+                "show_source": True,
+            }
+
+
+            if hasattr(obj, "kind") and obj.kind.value != "function":
                 # Configuration for classes and modules
-                default_options = {
-                    "docstring_section_style": "table",
-                    "heading_level": 3,
-                    "show_root_heading": True,
-                    "show_source": True,
-                    "summary": {"functions": False},
-                }
+                default_options["summary"] = {"functions": False}
 
             default_options.update(options)
             config = ConfigDict(**default_options)
