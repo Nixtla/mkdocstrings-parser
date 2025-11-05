@@ -21,7 +21,7 @@ jobs:
           python-version: 3.11
 
       - name: Install dependencies
-        run: pip install griffe2md rich pyyaml coreforecast utilsforecast pytest
+        run: pip install griffe2md rich pyyaml coreforecast utilsforecast datasetsforecast pytest
 
       - name: Run tests
         run: pytest tests
