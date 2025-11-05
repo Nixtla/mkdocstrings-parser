@@ -1,3 +1,7 @@
+import pytest
+
+
+@pytest.mark.datasets
 def test_yearly_dataclass(setup_parser):
     fn = "::: datasetsforecast.m3.Yearly"
     rendered = setup_parser.process_markdown(fn)
@@ -52,7 +56,7 @@ sheet_name: str = 'M3Year'
 ```
 """
 
-
+@pytest.mark.datasets
 def test_download_file(setup_parser):
     fn = """::: datasetsforecast.utils.download_file"""
     rendered = setup_parser.process_markdown(fn)
