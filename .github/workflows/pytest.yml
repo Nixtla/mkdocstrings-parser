@@ -22,8 +22,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install griffe2md rich pyyaml neuralforecast "mlforecast[dask]" statsforecast \\
-            nixtla coreforecast utilsforecast datasetsforecast pytest
+          pip install griffe2md rich pyyaml neuralforecast "mlforecast[dask]" statsforecast nixtla coreforecast utilsforecast datasetsforecast pytest
 
       - name: Run tests
         run: pytest
