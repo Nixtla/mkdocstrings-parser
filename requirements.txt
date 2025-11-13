@@ -1,0 +1,12 @@
+griffe2md
+rich
+pyyaml
+neuralforecast
+mlforecast[dask]
+statsforecast
+hierarchicalforecast
+nixtla
+coreforecast
+utilsforecast
+datasetsforecast
+pytest
