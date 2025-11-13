@@ -82,16 +82,29 @@ class MkDocstringsParser:
                 except:
                     pass  # Fall back to griffe's detection
 
+            # Determine which parser to use based on docstring_style option
+            docstring_style = options.get("docstring_style", "google")
+
+            # Map docstring style to parser function
+            parser_map = {
+                "google": griffe.parse_google,
+                "numpy": griffe.parse_numpy,
+                "sphinx": griffe.parse_sphinx,
+                "auto": griffe.parse_auto,
+            }
+
+            parser_func = parser_map.get(docstring_style, griffe.parse_google)
+
             if obj.docstring:
-                # Force parsing with Google parser to get structured sections
-                obj.docstring.parsed = griffe.parse_google(obj.docstring)
+                # Parse with the appropriate parser to get structured sections
+                obj.docstring.parsed = parser_func(obj.docstring)
 
             # Handle different object types
             if hasattr(obj, "members"):
                 # This is a class or module - parse docstrings for all methods/functions
                 for member_name, member in obj.members.items():
                     if member.docstring:
-                        member.docstring.parsed = griffe.parse_google(member.docstring)
+                        member.docstring.parsed = parser_func(member.docstring)
 
             default_options = {
                 "docstring_section_style": "table",
