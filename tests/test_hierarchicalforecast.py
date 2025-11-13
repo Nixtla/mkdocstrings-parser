@@ -1,0 +1,165 @@
+def test_make_future_dataframe(setup_parser):
+    fn = """::: hierarchicalforecast.utils.make_future_dataframe"""
+    output = setup_parser.process_markdown(fn)
+    assert output == """### `make_future_dataframe`
+
+```python
+make_future_dataframe(df, freq, h, id_col='unique_id', time_col='ds')
+```
+
+Create future dataframe for forecasting.
+
+**Parameters:**
+
+Name | Type | Description | Default
+---- | ---- | ----------- | -------
+`df` | <code>[Frame](#narwhals.typing.Frame)</code> | Dataframe with ids, times and values for the exogenous regressors. | *required*
+`freq` | <code>[Union](#typing.Union)\[[str](#str), [int](#int)\]</code> | Frequency of the data. Must be a valid pandas or polars offset alias, or an integer. | *required*
+`h` | <code>[int](#int)</code> | Forecast horizon. | *required*
+`id_col` | <code>[str](#str)</code> | Column that identifies each serie. Default is 'unique_id'. | <code>'unique_id'</code>
+`time_col` | <code>[str](#str)</code> | Column that identifies each timestep, its values can be timestamps or integers. Default is 'ds'. | <code>'ds'</code>
+
+**Returns:**
+
+Name | Type | Description
+---- | ---- | -----------
+`FrameT` | <code>[FrameT](#narwhals.typing.FrameT)</code> | DataFrame with future values.
+"""
+
+def test_evaluate(setup_parser):
+    fn = "::: hierarchicalforecast.evaluation.evaluate"
+    output = setup_parser.process_markdown(fn)
+    assert output == """### `evaluate`
+
+```python
+evaluate(
+    df,
+    metrics,
+    tags,
+    models=None,
+    train_df=None,
+    level=None,
+    id_col="unique_id",
+    time_col="ds",
+    target_col="y",
+    agg_fn="mean",
+    benchmark=None,
+)
+```
+
+Evaluate hierarchical forecast using different metrics.
+
+**Parameters:**
+
+Name | Type | Description | Default
+---- | ---- | ----------- | -------
+`df` | <code>pandas, polars, dask or spark DataFrame</code> | Forecasts to evaluate. Must have `id_col`, `time_col`, `target_col` and models' predictions. | *required*
+`metrics` | <code>list of callable</code> | Functions with arguments `df`, `models`, `id_col`, `target_col` and optionally `train_df`. | *required*
+`tags` | <code>[dict](#dict)</code> | Each key is a level in the hierarchy and its value contains tags associated to that level. Each key is a level in the hierarchy and its value contains tags associated to that level. | *required*
+`models` | <code>list of str</code> | Names of the models to evaluate. If `None` will use every column in the dataframe after removing id, time and target. | <code>None</code>
+`train_df` | <code>pandas, polars, dask or spark DataFrame</code> | Training set. Used to evaluate metrics such as `mase`. | <code>None</code>
+`level` | <code>list of int</code> | Prediction interval levels. Used to compute losses that rely on quantiles. | <code>None</code>
+`id_col` | <code>[str](#str)</code> | Column that identifies each serie. | <code>'unique_id'</code>
+`time_col` | <code>[str](#str)</code> | Column that identifies each timestep, its values can be timestamps or integers. | <code>'ds'</code>
+`target_col` | <code>[str](#str)</code> | Column that contains the target. | <code>'y'</code>
+`agg_fn` | <code>[str](#str)</code> | Statistic to compute on the scores by id to reduce them to a single number. | <code>'mean'</code>
+`benchmark` | <code>[str](#str)</code> | If passed, evaluators are scaled by the error of this benchmark model. | <code>None</code>
+
+**Returns:**
+
+Type | Description
+---- | -----------
+<code>[FrameT](#narwhals.typing.FrameT)</code> | pandas, polars DataFrame: Metrics with one row per (id, metric) combination and one column per model. If `agg_fn` is not `None`, there is only one row per metric.
+"""
+
+def test_permbu(setup_parser):
+    fn = """::: hierarchicalforecast.probabilistic_methods.PERMBU
+    handler: python
+    options:
+      docstring_style: google
+      members:
+        - get_samples
+      heading_level: 3
+      show_root_heading: true
+      show_source: true
+"""
+    output = setup_parser.process_markdown(fn)
+    assert output == """### `PERMBU`
+
+```python
+PERMBU(
+    S,
+    tags,
+    y_hat,
+    y_insample,
+    y_hat_insample,
+    sigmah,
+    num_samples=None,
+    seed=0,
+    P=None,
+)
+```
+
+PERMBU Probabilistic Reconciliation Class.
+
+The PERMBU method leverages empirical bottom-level marginal distributions
+with empirical copula functions (describing bottom-level dependencies) to
+generate the distribution of aggregate-level distributions using BottomUp
+reconciliation. The sample reordering technique in the PERMBU method reinjects
+multivariate dependencies into independent bottom-level samples.
+
+```
+Algorithm:
+1.   For all series compute conditional marginals distributions.
+2.   Compute residuals $\hat{\epsilon}_{i,t}$ and obtain rank permutations.
+2.   Obtain K-sample from the bottom-level series predictions.
+3.   Apply recursively through the hierarchical structure:<br>
+    3.1.   For a given aggregate series $i$ and its children series:<br>
+    3.2.   Obtain children's empirical joint using sample reordering copula.<br>
+    3.2.   From the children's joint obtain the aggregate series's samples.
+```
+
+**Parameters:**
+
+Name | Type | Description | Default
+---- | ---- | ----------- | -------
+`S` | <code>[Union](#typing.Union)\[[ndarray](#numpy.ndarray), [spmatrix](#scipy.sparse.spmatrix)\]</code> | np.array, summing matrix of size (`base`, `bottom`). | *required*
+`tags` | <code>[dict](#dict)\[[str](#str), [ndarray](#numpy.ndarray)\]</code> | Each key is a level and each value its `S` indices. | *required*
+`y_insample` | <code>[ndarray](#numpy.ndarray)</code> | Insample values of size (`base`, `insample_size`). | *required*
+`y_hat_insample` | <code>[ndarray](#numpy.ndarray)</code> | Insample point forecasts of size (`base`, `insample_size`). | *required*
+`sigmah` | <code>[ndarray](#numpy.ndarray)</code> | np.array, forecast standard dev. of size (`base`, `horizon`). | *required*
+`num_samples` | <code>[Optional](#typing.Optional)\[[int](#int)\]</code> | int, number of normal prediction samples generated. | <code>None</code>
+`seed` | <code>[int](#int)</code> | int, random seed for numpy generator's replicability. | <code>0</code>
+
+<details class="references" open markdown="1">
+<summary>References</summary>
+
+- [Taieb, Souhaib Ben and Taylor, James W and Hyndman, Rob J. (2017). "Coherent probabilistic forecasts for hierarchical time series. International conference on machine learning ICML."](https://proceedings.mlr.press/v70/taieb17a.html)
+
+</details>
+
+#### `PERMBU.get_samples`
+
+```python
+get_samples(num_samples=None)
+```
+
+PERMBU Sample Reconciliation Method.
+
+Applies PERMBU reconciliation method as defined by Taieb et. al 2017.
+Generating independent base prediction samples, restoring its multivariate
+dependence using estimated copula with reordering and applying the BottomUp
+aggregation to the new samples.
+
+**Parameters:**
+
+Name | Type | Description | Default
+---- | ---- | ----------- | -------
+`num_samples` | <code>[Optional](#typing.Optional)\[[int](#int)\]</code> | int, number of samples generated from coherent distribution. | <code>None</code>
+
+**Returns:**
+
+Name | Type | Description
+---- | ---- | -----------
+`samples` | | Coherent samples of size (`base`, `horizon`, `num_samples`).
+"""
