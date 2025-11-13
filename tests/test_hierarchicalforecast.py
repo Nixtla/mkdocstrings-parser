@@ -32,19 +32,7 @@ def test_evaluate(setup_parser):
     assert output == """### `evaluate`
 
 ```python
-evaluate(
-    df,
-    metrics,
-    tags,
-    models=None,
-    train_df=None,
-    level=None,
-    id_col="unique_id",
-    time_col="ds",
-    target_col="y",
-    agg_fn="mean",
-    benchmark=None,
-)
+evaluate(df, metrics, tags, models=None, train_df=None, level=None, id_col='unique_id', time_col='ds', target_col='y', agg_fn='mean', benchmark=None)
 ```
 
 Evaluate hierarchical forecast using different metrics.
@@ -87,17 +75,7 @@ def test_permbu(setup_parser):
     assert output == """### `PERMBU`
 
 ```python
-PERMBU(
-    S,
-    tags,
-    y_hat,
-    y_insample,
-    y_hat_insample,
-    sigmah,
-    num_samples=None,
-    seed=0,
-    P=None,
-)
+PERMBU(S, tags, y_hat, y_insample, y_hat_insample, sigmah, num_samples=None, seed=0, P=None)
 ```
 
 PERMBU Probabilistic Reconciliation Class.
