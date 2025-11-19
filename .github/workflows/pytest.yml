@@ -18,7 +18,7 @@ jobs:
       - name: Setup python
         uses: astral-sh/setup-uv@v7
         with:
-          version: 3.11
+          python-version: 3.11
           enable-cache: "auto"
 
       - name: Install dependencies
