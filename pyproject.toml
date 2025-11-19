@@ -36,3 +36,8 @@ packages = ["mkdocstrings_parser"]
 
 [tool.setuptools.package-dir]
 parser = "mkdocstrings_parser"
+
+[tool.pytest.ini_options]
+testpaths = "tests"
+addopts = "-vv"
+markers = "datasets: tests for datasetsforecast"
