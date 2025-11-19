@@ -21,8 +21,10 @@ jobs:
           python-version: 3.11
           enable-cache: "auto"
 
-      - name: Install dependencies
-        run: uv pip install -e ".[dev,nixtlaverse]"
+      - name: Create venv and install dependencies
+        run: |
+          uv venv
+          uv pip install -e ".[dev,nixtlaverse]"
 
       - name: Run tests
         run: uv run pytest
