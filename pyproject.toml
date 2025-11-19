@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mkdocstrings-parser"
+version = "0.0.1"
+description = "A simple parser for mkdocstrings signature blocks"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "griffe2md",
+    "pyyaml",
+    "rich",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+]
+nixtlaverse = [
+    "coreforecast",
+    "utilsforecast",
+    "datasetsforecast",
+    "mlforecast[dask]",
+    "hierarchicalforecast",
+    "neuralforecast",
+    "statsforecast",
+    "nixtla"
+]
+
+
+[tool.setuptools]
+packages = ["mkdocstrings_parser"]
+
+[tool.setuptools.package-dir]
+parser = "mkdocstrings_parser"
