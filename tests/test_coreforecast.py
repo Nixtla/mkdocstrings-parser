@@ -64,6 +64,9 @@ def test_inherited_fn(setup_parser):
       show_root_heading: true
       show_source: true"""
     output = setup_parser.process_markdown(inherited_fn)
+    print("hola")
+    print(output)
+    print("adios")
     assert output == """### `Lag`
 
 ```python
@@ -98,9 +101,37 @@ take(_idxs)
 transform(ga)
 ```
 
+Apply the transformation by group.
+
+**Parameters:**
+
+Name | Type | Description | Default
+---- | ---- | ----------- | -------
+`ga` | <code>GroupedArray</code> | Array with the grouped data. | *required*
+
+**Returns:**
+
+Type | Description
+---- | -----------
+| np.ndarray: Array with the transformed data.
+
 #### `Lag.update`
 
 ```python
 update(ga)
 ```
+
+Compute the most recent value of the transformation for each group.
+
+**Parameters:**
+
+Name | Type | Description | Default
+---- | ---- | ----------- | -------
+`ga` | <code>GroupedArray</code> | Array with the grouped data. | *required*
+
+**Returns:**
+
+Type | Description
+---- | -----------
+| np.ndarray: Array with the updates for each group.
 """
