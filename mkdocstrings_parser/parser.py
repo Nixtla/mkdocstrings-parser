@@ -100,9 +100,9 @@ class MkDocstringsParser:
                 obj.docstring.parsed = parser_func(obj.docstring)
 
             # Handle different object types
-            if hasattr(obj, "members"):
-                # This is a class or module - parse docstrings for all methods/functions
-                for member_name, member in obj.members.items():
+            if hasattr(obj, "all_members"):
+                # This is a class or module - parse docstrings for all methods/functions (including inherited)
+                for member_name, member in obj.all_members.items():
                     if member.docstring:
                         member.docstring.parsed = parser_func(member.docstring)
 

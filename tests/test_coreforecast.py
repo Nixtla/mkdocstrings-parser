@@ -49,3 +49,58 @@ Type | Description
 ---- | -----------
 | np.ndarray: Array with the expanding statistic
 """
+
+def test_inherited_fn(setup_parser):
+    inherited_fn = """::: coreforecast.lag_transforms.Lag
+    handler: python
+    options:
+      docstring_style: google
+      members:
+        - stack
+        - take
+        - transform
+        - update
+      heading_level: 3
+      show_root_heading: true
+      show_source: true"""
+    output = setup_parser.process_markdown(inherited_fn)
+    assert output == """### `Lag`
+
+```python
+Lag(lag)
+```
+
+Bases: <code>[\_BaseLagTransform](#coreforecast.lag_transforms._BaseLagTransform)</code>
+
+Simple lag operator
+
+**Parameters:**
+
+Name | Type | Description | Default
+---- | ---- | ----------- | -------
+`lag` | <code>[int](#int)</code> | Number of periods to offset | *required*
+
+#### `Lag.stack`
+
+```python
+stack(transforms)
+```
+
+#### `Lag.take`
+
+```python
+take(_idxs)
+```
+
+#### `Lag.transform`
+
+```python
+transform(ga)
+```
+
+#### `Lag.update`
+
+```python
+update(ga)
+```
+"""
