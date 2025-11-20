@@ -30,16 +30,16 @@ Name | Type | Description | Default
 `**kwargs` | | Additional keyword arguments for DataLoader. | <code>{}</code>
 """
 
-def test_autornn(setup_parser):
-    fn = """::: neuralforecast.auto.AutoRNN
+def test_autolstm(setup_parser):
+    fn = """::: neuralforecast.auto.AutoLSTM
     options:
       members: [__init__]
       heading_level: 3"""
     output = setup_parser.process_markdown(fn)
-    assert output == """### `AutoRNN`
+    assert output == """### `AutoLSTM`
 
 ```python
-AutoRNN(h, loss=MAE(), valid_loss=None, config=None, search_alg=BasicVariantGenerator(random_state=1), num_samples=10, refit_with_val=False, cpus=cpu_count(), gpus=torch.cuda.device_count(), verbose=False, alias=None, backend='ray', callbacks=None)
+AutoLSTM(h, loss=MAE(), valid_loss=None, config=None, search_alg=BasicVariantGenerator(random_state=1), num_samples=10, refit_with_val=False, cpus=cpu_count(), gpus=torch.cuda.device_count(), verbose=False, alias=None, backend='ray', callbacks=None)
 ```
 
 Bases: <code>[BaseAuto](#neuralforecast.common._base_auto.BaseAuto)</code>
