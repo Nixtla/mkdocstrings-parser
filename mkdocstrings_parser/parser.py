@@ -95,6 +95,16 @@ class MkDocstringsParser:
 
             parser_func = parser_map.get(docstring_style, griffe.parse_google)
 
+            # For classes without a docstring, inherit from base class
+            if hasattr(obj, "kind") and obj.kind.value == "class":
+                if not obj.docstring and hasattr(obj, "resolved_bases"):
+                    for base in obj.resolved_bases:
+                        if base.docstring:
+                            from griffe import Docstring
+                            # Inherit the base class docstring
+                            obj.docstring = Docstring(base.docstring.value, lineno=base.docstring.lineno)
+                            break
+
             if obj.docstring:
                 # Parse with the appropriate parser to get structured sections
                 obj.docstring.parsed = parser_func(obj.docstring)
