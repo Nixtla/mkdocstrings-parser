@@ -167,7 +167,7 @@ The most basic hierarchical reconciliation is performed using an Bottom-Up strat
 the first time by Orcutt in 1968.
 The corresponding hierarchical "projection" matrix is defined as:
 $$
-\\\\mathbf{P}_{\\\\text{BU}} = \\[\\\\mathbf{0}_{\\\\mathrm{[b],[a]}};|;\\\\mathbf{I}\\_{\\\\mathrm{[b][b]}}\\]
+\\mathbf{P}_{\\text{BU}} = \[\\mathbf{0}_{\\mathrm{[b],[a]}};|;\\mathbf{I}\_{\\mathrm{[b][b]}}\]
 $$
 
 <details class="references" open markdown="1">
