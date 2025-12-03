@@ -138,7 +138,7 @@ class MkDocstringsParser:
             # Fix double backslashes in inline/block math equations
             markdown_docs = re.sub(
                 r"\$([^$]+)\$",
-                lambda m: f"${m.group(1).replace('\\\\', '\\')}$",
+                lambda m: "$" + m.group(1).replace('\\\\', '\\') + "$",
                 markdown_docs
             )
 
