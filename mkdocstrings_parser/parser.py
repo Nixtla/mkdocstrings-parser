@@ -135,10 +135,16 @@ class MkDocstringsParser:
             markdown_docs = render_object_docs(obj, config)  # type: ignore
 
             markdown_docs = markdown_docs.replace(f"### `{to_replace}.", "### `")
-            # Fix double backslashes in inline/block math equations
+            # Fix double backslashes in inline math equations
             markdown_docs = re.sub(
                 r"\$([^$]+)\$",
-                lambda m: "$" + m.group(1).replace('\\\\', '\\') + "$",
+                lambda m: "$" + m.group(1).replace("\\\\", "\\") + "$",
+                markdown_docs
+            )
+            # Fix underscores in inline math equations
+            markdown_docs = re.sub(
+                r"\$([^$]+)\$",
+                lambda m: "$" + m.group(1).replace("\\\_", "_") + "$",
                 markdown_docs
             )
 
