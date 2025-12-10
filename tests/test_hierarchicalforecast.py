@@ -263,10 +263,12 @@ Bases: <code>[HReconciler](#hierarchicalforecast.methods.HReconciler)</code>
 Top Down Reconciliation Class.
 
 The Top Down hierarchical reconciliation method, distributes the total aggregate predictions and decomposes
-it down the hierarchy using proportions $\mathbf{p}\_{\mathrm{[b]}}$ that can be actual historical values
+it down the hierarchy using proportions $\mathbf{p}_{\mathrm{[b]}}$ that can be actual historical values
 or estimated.
 
-$$\mathbf{P}=\[\mathbf{p}_{\mathrm{[b]}};|;\mathbf{0}_{\mathrm{[b][a,b;-1]}}\]$$
+```math
+\mathbf{P}=[\mathbf{p}_{\mathrm{[b]}}\;|\;\mathbf{0}_{\mathrm{[b][a,b\;-1]}}]
+```
 
 **Parameters:**
 
@@ -274,13 +276,10 @@ Name | Type | Description | Default
 ---- | ---- | ----------- | -------
 `method` | <code>[str](#str)</code> | One of `forecast_proportions`, `average_proportions` and `proportion_averages`. | *required*
 
-<details class="references" open markdown="1">
-<summary>References</summary>
+References:
 
 - [CW. Gross (1990). "Disaggregation methods to expedite product line forecasting". Journal of Forecasting, 9 , 233-254. doi:10.1002/for.3980090304](https://onlinelibrary.wiley.com/doi/abs/10.1002/for.3980090304).
 - [G. Fliedner (1999). "An investigation of aggregate variable time series forecast strategies with specific subaggregate time series statistical correlation". Computers and Operations Research, 26 , 1133-1149. doi:10.1016/S0305-0548(99)00017-9](<https://doi.org/10.1016/S0305-0548(99)00017-9>).
-
-</details>
 
 #### `TopDown.fit`
 
@@ -294,22 +293,22 @@ TopDown Fit Method.
 
 Name | Type | Description | Default
 ---- | ---- | ----------- | -------
-`S` | | Summing matrix of size (`base`, `bottom`). | *required*
-`y_hat` | | Forecast values of size (`base`, `horizon`). | *required*
+`S` | <code>[ndarray](#numpy.ndarray)</code> | Summing matrix of size (`base`, `bottom`). | *required*
+`y_hat` | <code>[ndarray](#numpy.ndarray)</code> | Forecast values of size (`base`, `horizon`). | *required*
 `y_insample` | <code>[ndarray](#numpy.ndarray)</code> | Insample values of size (`base`, `insample_size`). Optional for `forecast_proportions` method. | *required*
-`y_hat_insample` | <code>[Optional](#typing.Optional)\[[ndarray](#numpy.ndarray)\]</code> | Insample forecast values of size (`base`, `insample_size`). Optional for `forecast_proportions` method. | <code>None</code>
-`sigmah` | <code>[Optional](#typing.Optional)\[[ndarray](#numpy.ndarray)\]</code> | Estimated standard deviation of the conditional marginal distribution. | <code>None</code>
-`interval_method` | | Sampler for prediction intervals, one of `normality`, `bootstrap`, `permbu`. | *required*
-`num_samples` | <code>[Optional](#typing.Optional)\[[int](#int)\]</code> | Number of samples for probabilistic coherent distribution. | <code>None</code>
-`seed` | <code>[Optional](#typing.Optional)\[[int](#int)\]</code> | Seed for reproducibility. | <code>None</code>
-`tags` | <code>[Optional](#typing.Optional)\[[dict](#dict)\[[str](#str), [ndarray](#numpy.ndarray)\]\]</code> | Each key is a level and each value its `S` indices. | <code>None</code>
-`idx_bottom` | <code>[Optional](#typing.Optional)\[[ndarray](#numpy.ndarray)\]</code> | Indices corresponding to the bottom level of `S`, size (`bottom`). | <code>None</code>
+`y_hat_insample` | <code>[ndarray](#numpy.ndarray)</code> | Insample forecast values of size (`base`, `insample_size`). Optional for `forecast_proportions` method. | <code>None</code>
+`sigmah` | <code>[ndarray](#numpy.ndarray)</code> | Estimated standard deviation of the conditional marginal distribution. | <code>None</code>
+`interval_method` | <code>[str](#str)</code> | Sampler for prediction intervals, one of `normality`, `bootstrap`, `permbu`. | *required*
+`num_samples` | <code>[int](#int)</code> | Number of samples for probabilistic coherent distribution. | <code>None</code>
+`seed` | <code>[int](#int)</code> | Seed for reproducibility. | <code>None</code>
+`tags` | <code>[dict](#dict)\[[str](#str), [ndarray](#numpy.ndarray)\]</code> | Each key is a level and each value its `S` indices. | <code>None</code>
+`idx_bottom` | <code>[ndarray](#numpy.ndarray)</code> | Indices corresponding to the bottom level of `S`, size (`bottom`). | <code>None</code>
 
 **Returns:**
 
 Name | Type | Description
 ---- | ---- | -----------
-`self` | | object, fitted reconciler.
+`TopDown` | <code>[object](#object)</code> | fitted reconciler.
 
 #### `TopDown.fit_predict`
 
@@ -326,18 +325,18 @@ Name | Type | Description | Default
 `S` | <code>[ndarray](#numpy.ndarray)</code> | Summing matrix of size (`base`, `bottom`). | *required*
 `y_hat` | <code>[ndarray](#numpy.ndarray)</code> | Forecast values of size (`base`, `horizon`). | *required*
 `tags` | <code>[dict](#dict)\[[str](#str), [ndarray](#numpy.ndarray)\]</code> | Each key is a level and each value its `S` indices. | *required*
-`idx_bottom` | <code>[ndarray](#numpy.ndarray)</code> | Indices corresponding to the bottom level of `S`, size (`bottom`). | <code>None</code>
-`y_insample` | <code>[Optional](#typing.Optional)\[[ndarray](#numpy.ndarray)\]</code> | Insample values of size (`base`, `insample_size`). Optional for `forecast_proportions` method. | <code>None</code>
-`y_hat_insample` | <code>[Optional](#typing.Optional)\[[ndarray](#numpy.ndarray)\]</code> | Insample forecast values of size (`base`, `insample_size`). Optional for `forecast_proportions` method. | <code>None</code>
-`sigmah` | <code>[Optional](#typing.Optional)\[[ndarray](#numpy.ndarray)\]</code> | Estimated standard deviation of the conditional marginal distribution. | <code>None</code>
-`level` | <code>[Optional](#typing.Optional)\[[list](#list)\[[int](#int)\]\]</code> | float list 0-100, confidence levels for prediction intervals. | <code>None</code>
-`intervals_method` | <code>[Optional](#typing.Optional)\[[str](#str)\]</code> | Sampler for prediction intervals, one of `normality`, `bootstrap`, `permbu`. | <code>None</code>
-`num_samples` | <code>[Optional](#typing.Optional)\[[int](#int)\]</code> | Number of samples for probabilistic coherent distribution. | <code>None</code>
-`seed` | <code>[Optional](#typing.Optional)\[[int](#int)\]</code> | Seed for reproducibility. | <code>None</code>
+`idx_bottom` | <code>[ndarray](#numpy.ndarray)</code> | Indices corresponding to the bottom level of `S`, size (`bottom`). Default is None. | <code>None</code>
+`y_insample` | <code>[ndarray](#numpy.ndarray)</code> | Insample values of size (`base`, `insample_size`). Optional for `forecast_proportions` method. Default is None. | <code>None</code>
+`y_hat_insample` | <code>[ndarray](#numpy.ndarray)</code> | Insample forecast values of size (`base`, `insample_size`). Optional for `forecast_proportions` method. Default is None. | <code>None</code>
+`sigmah` | <code>[ndarray](#numpy.ndarray)</code> | Estimated standard deviation of the conditional marginal distribution. Default is None. | <code>None</code>
+`level` | <code>[list](#list)\[[int](#int)\]</code> | float list 0-100, confidence levels for prediction intervals. Default is None. | <code>None</code>
+`intervals_method` | <code>[str](#str)</code> | Sampler for prediction intervals, one of `normality`, `bootstrap`, `permbu`. Default is None. | <code>None</code>
+`num_samples` | <code>[int](#int)</code> | Number of samples for probabilistic coherent distribution. Default is None. | <code>None</code>
+`seed` | <code>[int](#int)</code> | Seed for reproducibility. | <code>None</code>
 
 **Returns:**
 
 Name | Type | Description
 ---- | ---- | -----------
-`y_tilde` | | Reconciliated y_hat using the Top Down approach.
+`y_tilde` | <code>[ndarray](#numpy.ndarray)</code> | Reconciliated y_hat using the Top Down approach.
 """
