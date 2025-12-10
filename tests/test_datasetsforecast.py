@@ -51,13 +51,7 @@ sheet_name: str = 'M3Year'
 
 @pytest.mark.datasets
 def test_download_file(setup_parser):
-    fn = """::: datasetsforecast.utils.download_file
-    handler: python
-    options:
-      docstring_style: numpy
-      heading_level: 3
-      show_root_heading: true
-      show_source: true"""
+    fn = "::: datasetsforecast.utils.download_file"
     rendered = setup_parser.process_markdown(fn)
 
     assert rendered == """### `download_file`
@@ -72,7 +66,7 @@ Download data from source_ulr inside directory.
 
 Name | Type | Description | Default
 ---- | ---- | ----------- | -------
-`directory` | <code>[str](#str)</code> | Custom directory where data will be downloaded. | *required*
+`directory` | <code>([str](#str), [Path](#pathlib.Path))</code> | Custom directory where data will be downloaded. | *required*
 `source_url` | <code>[str](#str)</code> | URL where data is hosted. | *required*
 `decompress` | <code>[bool](#bool)</code> | Wheter decompress downloaded file. Default False. | <code>False</code>
 """
