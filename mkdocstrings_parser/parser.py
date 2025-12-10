@@ -144,7 +144,7 @@ class MkDocstringsParser:
             # Fix underscores in inline math equations
             markdown_docs = re.sub(
                 r"\$([^$]+)\$",
-                lambda m: "$" + m.group(1).replace("\\\_", "_") + "$",
+                lambda m: "$" + m.group(1).replace("\_", "_") + "$",
                 markdown_docs
             )
 
