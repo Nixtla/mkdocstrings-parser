@@ -1,3 +1,5 @@
+import pytest
+
 def test_make_future_dataframe(setup_parser):
     fn = """::: hierarchicalforecast.utils.make_future_dataframe"""
     output = setup_parser.process_markdown(fn)
@@ -14,7 +16,7 @@ Create future dataframe for forecasting.
 Name | Type | Description | Default
 ---- | ---- | ----------- | -------
 `df` | <code>[Frame](#narwhals.typing.Frame)</code> | Dataframe with ids, times and values for the exogenous regressors. | *required*
-`freq` | <code>[Union](#typing.Union)\[[str](#str), [int](#int)\]</code> | Frequency of the data. Must be a valid pandas or polars offset alias, or an integer. | *required*
+`freq` | <code>[Union](#Union)\[[str](#str), [int](#int)\]</code> | Frequency of the data. Must be a valid pandas or polars offset alias, or an integer. | *required*
 `h` | <code>[int](#int)</code> | Forecast horizon. | *required*
 `id_col` | <code>[str](#str)</code> | Column that identifies each serie. Default is 'unique_id'. | <code>'unique_id'</code>
 `time_col` | <code>[str](#str)</code> | Column that identifies each timestep, its values can be timestamps or integers. Default is 'ds'. | <code>'ds'</code>
@@ -60,6 +62,7 @@ Type | Description
 <code>[FrameT](#narwhals.typing.FrameT)</code> | pandas, polars DataFrame: Metrics with one row per (id, metric) combination and one column per model. If `agg_fn` is not `None`, there is only one row per metric.
 """
 
+@pytest.mark.skip(reason="waiting for new HF release")
 def test_permbu(setup_parser):
     fn = """::: hierarchicalforecast.probabilistic_methods.PERMBU
     handler: python
@@ -157,7 +160,11 @@ def test_bottomup(setup_parser):
       show_root_heading: true
       show_source: true"""
     output = setup_parser.process_markdown(fn)
-    assert output == """### `BottomUp`
+    assert output == r"""### `BottomUp`
+
+```python
+BottomUp()
+```
 
 Bases: <code>[HReconciler](#hierarchicalforecast.methods.HReconciler)</code>
 
@@ -166,21 +173,20 @@ Bottom Up Reconciliation Class.
 The most basic hierarchical reconciliation is performed using an Bottom-Up strategy. It was proposed for
 the first time by Orcutt in 1968.
 The corresponding hierarchical "projection" matrix is defined as:
-$$
-\\\\mathbf{P}_{\\\\text{BU}} = \\[\\\\mathbf{0}_{\\\\mathrm{[b],[a]}};|;\\\\mathbf{I}\\_{\\\\mathrm{[b][b]}}\\]
-$$
 
-<details class="references" open markdown="1">
-<summary>References</summary>
+```math
+\mathbf{P}_{\\text{BU}} = [\mathbf{0}_{\mathrm{[b],[a]}}\;|\;\mathbf{I}_{\mathrm{[b][b]}}]
+```
 
-- [Orcutt, G.H., Watts, H.W., & Edwards, J.B.(1968). "Data aggregation and information loss". The American Economic Review, 58 , 773(787)](http://www.jstor.org/stable/1815532).
+References:
 
-</details>
+- [Orcutt, G.H., Watts, H.W., & Edwards, J.B.(1968). "Data aggregation and
+  information loss". The American Economic Review, 58 , 773(787)](http://www.jstor.org/stable/1815532).
 
 #### `BottomUp.fit`
 
 ```python
-fit(S, y_hat, idx_bottom, y_insample=None, y_hat_insample=None, sigmah=None, intervals_method=None, num_samples=None, seed=None, tags=None)
+fit(S, y_hat, y_insample=None, y_hat_insample=None, sigmah=None, intervals_method=None, num_samples=None, seed=None, tags=None)
 ```
 
 Bottom Up Fit Method.
@@ -191,25 +197,24 @@ Name | Type | Description | Default
 ---- | ---- | ----------- | -------
 `S` | <code>[ndarray](#numpy.ndarray)</code> | Summing matrix of size (`base`, `bottom`). | *required*
 `y_hat` | <code>[ndarray](#numpy.ndarray)</code> | Forecast values of size (`base`, `horizon`). | *required*
-`idx_bottom` | <code>[ndarray](#numpy.ndarray)</code> | Indices corresponding to the bottom level of `S`, size (`bottom`). | *required*
-`y_insample` | <code>[Optional](#typing.Optional)\[[ndarray](#numpy.ndarray)\]</code> | In-sample values of size (`base`, `horizon`). Default is None. | <code>None</code>
-`y_hat_insample` | <code>[Optional](#typing.Optional)\[[ndarray](#numpy.ndarray)\]</code> | In-sample forecast values of size (`base`, `horizon`). Default is None. | <code>None</code>
-`sigmah` | <code>[Optional](#typing.Optional)\[[ndarray](#numpy.ndarray)\]</code> | Estimated standard deviation of the conditional marginal distribution. Default is None. | <code>None</code>
-`intervals_method` | <code>[Optional](#typing.Optional)\[[str](#str)\]</code> | Sampler for prediction intervals, one of `normality`, `bootstrap`, `permbu`. Default is None. | <code>None</code>
-`num_samples` | <code>[Optional](#typing.Optional)\[[int](#int)\]</code> | Number of samples for probabilistic coherent distribution. Default is None. | <code>None</code>
-`seed` | <code>[Optional](#typing.Optional)\[[int](#int)\]</code> | Seed for reproducibility. Default is None. | <code>None</code>
-`tags` | <code>[Optional](#typing.Optional)\[[dict](#dict)\[[str](#str), [ndarray](#numpy.ndarray)\]\]</code> | Tags for hierarchical structure. Default is None. | <code>None</code>
+`y_insample` | <code>[Optional](#Optional)\[[ndarray](#numpy.ndarray)\]</code> | In-sample values of size (`base`, `horizon`). Default is None. | <code>None</code>
+`y_hat_insample` | <code>[Optional](#Optional)\[[ndarray](#numpy.ndarray)\]</code> | In-sample forecast values of size (`base`, `horizon`). Default is None. | <code>None</code>
+`sigmah` | <code>[Optional](#Optional)\[[ndarray](#numpy.ndarray)\]</code> | Estimated standard deviation of the conditional marginal distribution. Default is None. | <code>None</code>
+`intervals_method` | <code>[Optional](#Optional)\[[str](#str)\]</code> | Sampler for prediction intervals, one of `normality`, `bootstrap`, `permbu`, `conformal`. Default is None. | <code>None</code>
+`num_samples` | <code>[Optional](#Optional)\[[int](#int)\]</code> | Number of samples for probabilistic coherent distribution. Default is None. | <code>None</code>
+`seed` | <code>[Optional](#Optional)\[[int](#int)\]</code> | Seed for reproducibility. Default is None. | <code>None</code>
+`tags` | <code>[Optional](#Optional)\[[dict](#dict)\[[str](#str), [ndarray](#numpy.ndarray)\]\]</code> | Tags for hierarchical structure. Default is None. | <code>None</code>
 
 **Returns:**
 
 Name | Type | Description
 ---- | ---- | -----------
-`BottomUp` | | object, fitted reconciler.
+`BottomUp` | <code>[object](#object)</code> | fitted reconciler.
 
 #### `BottomUp.fit_predict`
 
 ```python
-fit_predict(S, y_hat, idx_bottom, y_insample=None, y_hat_insample=None, sigmah=None, level=None, intervals_method=None, num_samples=None, seed=None, tags=None)
+fit_predict(S, y_hat, y_insample=None, y_hat_insample=None, sigmah=None, level=None, intervals_method=None, num_samples=None, seed=None, tags=None)
 ```
 
 BottomUp Reconciliation Method.
@@ -220,19 +225,18 @@ Name | Type | Description | Default
 ---- | ---- | ----------- | -------
 `S` | <code>[ndarray](#numpy.ndarray)</code> | Summing matrix of size (`base`, `bottom`). | *required*
 `y_hat` | <code>[ndarray](#numpy.ndarray)</code> | Forecast values of size (`base`, `horizon`). | *required*
-`idx_bottom` | <code>[ndarray](#numpy.ndarray)</code> | Indices corresponding to the bottom level of `S`, size (`bottom`). | *required*
-`y_insample` | <code>[Optional](#typing.Optional)\[[ndarray](#numpy.ndarray)\]</code> | In-sample values of size (`base`, `insample_size`). Default is None. | <code>None</code>
-`y_hat_insample` | <code>[Optional](#typing.Optional)\[[ndarray](#numpy.ndarray)\]</code> | In-sample forecast values of size (`base`, `insample_size`). Default is None. | <code>None</code>
-`sigmah` | <code>[Optional](#typing.Optional)\[[ndarray](#numpy.ndarray)\]</code> | Estimated standard deviation of the conditional marginal distribution. Default is None. | <code>None</code>
-`level` | <code>[Optional](#typing.Optional)\[[list](#list)\[[int](#int)\]\]</code> | float list 0-100, confidence levels for prediction intervals. Default is None. | <code>None</code>
-`intervals_method` | <code>[Optional](#typing.Optional)\[[str](#str)\]</code> | Sampler for prediction intervals, one of `normality`, `bootstrap`, `permbu`. Default is None. | <code>None</code>
-`num_samples` | <code>[Optional](#typing.Optional)\[[int](#int)\]</code> | Number of samples for probabilistic coherent distribution. Default is None. | <code>None</code>
-`seed` | <code>[Optional](#typing.Optional)\[[int](#int)\]</code> | Seed for reproducibility. Default is None. | <code>None</code>
-`tags` | <code>[Optional](#typing.Optional)\[[dict](#dict)\[[str](#str), [ndarray](#numpy.ndarray)\]\]</code> | Tags for hierarchical structure. Default is None. | <code>None</code>
+`y_insample` | <code>[Optional](#Optional)\[[ndarray](#numpy.ndarray)\]</code> | In-sample values of size (`base`, `insample_size`). Default is None. | <code>None</code>
+`y_hat_insample` | <code>[Optional](#Optional)\[[ndarray](#numpy.ndarray)\]</code> | In-sample forecast values of size (`base`, `insample_size`). Default is None. | <code>None</code>
+`sigmah` | <code>[Optional](#Optional)\[[ndarray](#numpy.ndarray)\]</code> | Estimated standard deviation of the conditional marginal distribution. Default is None. | <code>None</code>
+`level` | <code>[Optional](#Optional)\[[list](#list)\[[int](#int)\]\]</code> | float list 0-100, confidence levels for prediction intervals. Default is None. | <code>None</code>
+`intervals_method` | <code>[Optional](#Optional)\[[str](#str)\]</code> | Sampler for prediction intervals, one of `normality`, `bootstrap`, `permbu`, `conformal`. Default is None. | <code>None</code>
+`num_samples` | <code>[Optional](#Optional)\[[int](#int)\]</code> | Number of samples for probabilistic coherent distribution. Default is None. | <code>None</code>
+`seed` | <code>[Optional](#Optional)\[[int](#int)\]</code> | Seed for reproducibility. Default is None. | <code>None</code>
+`tags` | <code>[Optional](#Optional)\[[dict](#dict)\[[str](#str), [ndarray](#numpy.ndarray)\]\]</code> | Tags for hierarchical structure. Default is None. | <code>None</code>
 
 **Returns:**
 
 Name | Type | Description
 ---- | ---- | -----------
-`dict` | | y_tilde: Reconciliated y_hat using the Bottom Up approach.
+`y_tilde` | <code>[dict](#dict)</code> | Reconciliated y_hat using the Bottom Up approach.
 """

@@ -4091,6 +4091,10 @@ nixtlaverse = [
     { name = "utilsforecast", version = "0.2.11", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9'" },
     { name = "utilsforecast", version = "0.2.14", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
 ]
+optional = [
+    { name = "pandas", version = "2.0.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9'" },
+    { name = "pandas", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
+]
 
 [package.metadata]
 requires-dist = [
@@ -4101,6 +4105,7 @@ requires-dist = [
     { name = "mlforecast", extras = ["dask"], marker = "extra == 'nixtlaverse'" },
     { name = "neuralforecast", marker = "extra == 'nixtlaverse'" },
     { name = "nixtla", marker = "extra == 'nixtlaverse'" },
+    { name = "pandas", marker = "extra == 'optional'" },
     { name = "pip-licenses", specifier = ">=4.5.1" },
     { name = "pytest", marker = "extra == 'dev'" },
     { name = "pytest-cov", marker = "extra == 'dev'" },
@@ -4109,7 +4114,7 @@ requires-dist = [
     { name = "statsforecast", marker = "extra == 'nixtlaverse'" },
     { name = "utilsforecast", marker = "extra == 'nixtlaverse'" },
 ]
-provides-extras = ["dev", "nixtlaverse"]
+provides-extras = ["dev", "nixtlaverse", "optional"]
 
 [[package]]
 name = "mlforecast"
