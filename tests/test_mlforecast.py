@@ -10,4 +10,5 @@ Bases: <code>[DaskLGBMRegressor](#lightgbm.dask.DaskLGBMRegressor)</code>
 ```python
 model_
 ```
+
 """

@@ -53,6 +53,7 @@ seasonality: int = 1
 ```python
 source_url: str = 'https://zenodo.org/api/records/4656222/files/m3_yearly_dataset.zip/content'
 ```
+
 """
 
 @pytest.mark.datasets
@@ -77,4 +78,5 @@ Name | Type | Description | Default
 `decompress` | <code>[bool](#bool)</code> | Whether to decompress downloaded file. Default False. | <code>False</code>
 `filename` | <code>[str](#str)</code> | Override filename for the downloaded file. If None, the filename is derived from the URL. | <code>None</code>
 `max_retries` | <code>[int](#int)</code> | Maximum number of retry attempts on transient errors. | <code>3</code>
+
 """

@@ -81,7 +81,7 @@ Name | Type | Description | Default
 
 Name | Type | Description
 ---- | ---- | -----------
-`AutoARIMAProphet` | | Adapter object with `AutoARIMA` fitted model.
+`AutoARIMAProphet` |  | Adapter object with `AutoARIMA` fitted model.
 
 #### `AutoARIMAProphet.predict`
 
@@ -101,5 +101,6 @@ Name | Type | Description | Default
 
 Type | Description
 ---- | -----------
-| pandas.DataFrame: DataFrame with the forecast components.
+ | pandas.DataFrame: DataFrame with the forecast components.
+
 """

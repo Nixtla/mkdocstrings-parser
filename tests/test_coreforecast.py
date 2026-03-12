@@ -28,6 +28,7 @@ Name | Type | Description | Default
 Name | Type | Description
 ---- | ---- | -----------
 `int` | <code>[int](#int)</code> | Optimal number of differences.
+
 """
 
 def test_fn_w_decorator(setup_parser):
@@ -53,7 +54,7 @@ Name | Type | Description | Default
 
 Type | Description
 ---- | -----------
-| np.ndarray: Array with the expanding statistic
+ | np.ndarray: Array with the expanding statistic
 
 **Examples:**
 
@@ -67,6 +68,7 @@ array([1., 1.5, nan, nan, nan])
 >>> expanding_mean(x, skipna=True)
 array([1., 1.5, 1.5, 2.33..., 3.0])
 ```
+
 """
 
 def test_inherited_fn(setup_parser):
@@ -89,7 +91,7 @@ def test_inherited_fn(setup_parser):
 Lag(lag)
 ```
 
-Bases: <code>[\_BaseLagTransform](#coreforecast.lag_transforms._BaseLagTransform)</code>
+Bases: <code>[_BaseLagTransform](#coreforecast.lag_transforms._BaseLagTransform)</code>
 
 Simple lag operator
 
@@ -122,4 +124,5 @@ transform(ga)
 ```python
 update(ga)
 ```
+
 """
