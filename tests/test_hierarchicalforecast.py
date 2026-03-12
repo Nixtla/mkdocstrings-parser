@@ -16,7 +16,7 @@ Create future dataframe for forecasting.
 Name | Type | Description | Default
 ---- | ---- | ----------- | -------
 `df` | <code>[Frame](#narwhals.typing.Frame)</code> | Dataframe with ids, times and values for the exogenous regressors. | *required*
-`freq` | <code>[Union](#Union)\[[str](#str), [int](#int)\]</code> | Frequency of the data. Must be a valid pandas or polars offset alias, or an integer. | *required*
+`freq` | <code>[Union](#Union)[[str](#str), [int](#int)]</code> | Frequency of the data. Must be a valid pandas or polars offset alias, or an integer. | *required*
 `h` | <code>[int](#int)</code> | Forecast horizon. | *required*
 `id_col` | <code>[str](#str)</code> | Column that identifies each serie. Default is 'unique_id'. | <code>'unique_id'</code>
 `time_col` | <code>[str](#str)</code> | Column that identifies each timestep, its values can be timestamps or integers. Default is 'ds'. | <code>'ds'</code>
@@ -26,6 +26,7 @@ Name | Type | Description | Default
 Name | Type | Description
 ---- | ---- | -----------
 `FrameT` | <code>[FrameT](#narwhals.typing.FrameT)</code> | DataFrame with future values.
+
 """
 
 def test_evaluate(setup_parser):
@@ -60,6 +61,7 @@ Name | Type | Description | Default
 Type | Description
 ---- | -----------
 <code>[FrameT](#narwhals.typing.FrameT)</code> | pandas, polars DataFrame: Metrics with one row per (id, metric) combination and one column per model. If `agg_fn` is not `None`, there is only one row per metric.
+
 """
 
 @pytest.mark.skip(reason="waiting for new HF release")
@@ -172,16 +174,14 @@ Bottom Up Reconciliation Class.
 
 The most basic hierarchical reconciliation is performed using an Bottom-Up strategy. It was proposed for
 the first time by Orcutt in 1968.
-The corresponding hierarchical "projection" matrix is defined as:
-
+The corresponding hierarchical \"projection\" matrix is defined as:
 ```math
 \mathbf{P}_{\\text{BU}} = [\mathbf{0}_{\mathrm{[b],[a]}}\;|\;\mathbf{I}_{\mathrm{[b][b]}}]
 ```
 
 References:
-
 - [Orcutt, G.H., Watts, H.W., & Edwards, J.B.(1968). "Data aggregation and
-  information loss". The American Economic Review, 58 , 773(787)](http://www.jstor.org/stable/1815532).
+information loss". The American Economic Review, 58 , 773(787)](http://www.jstor.org/stable/1815532).
 
 #### `BottomUp.fit`
 
@@ -197,13 +197,13 @@ Name | Type | Description | Default
 ---- | ---- | ----------- | -------
 `S` | <code>[ndarray](#numpy.ndarray)</code> | Summing matrix of size (`base`, `bottom`). | *required*
 `y_hat` | <code>[ndarray](#numpy.ndarray)</code> | Forecast values of size (`base`, `horizon`). | *required*
-`y_insample` | <code>[Optional](#Optional)\[[ndarray](#numpy.ndarray)\]</code> | In-sample values of size (`base`, `horizon`). Default is None. | <code>None</code>
-`y_hat_insample` | <code>[Optional](#Optional)\[[ndarray](#numpy.ndarray)\]</code> | In-sample forecast values of size (`base`, `horizon`). Default is None. | <code>None</code>
-`sigmah` | <code>[Optional](#Optional)\[[ndarray](#numpy.ndarray)\]</code> | Estimated standard deviation of the conditional marginal distribution. Default is None. | <code>None</code>
-`intervals_method` | <code>[Optional](#Optional)\[[str](#str)\]</code> | Sampler for prediction intervals, one of `normality`, `bootstrap`, `permbu`, `conformal`. Default is None. | <code>None</code>
-`num_samples` | <code>[Optional](#Optional)\[[int](#int)\]</code> | Number of samples for probabilistic coherent distribution. Default is None. | <code>None</code>
-`seed` | <code>[Optional](#Optional)\[[int](#int)\]</code> | Seed for reproducibility. Default is None. | <code>None</code>
-`tags` | <code>[Optional](#Optional)\[[dict](#dict)\[[str](#str), [ndarray](#numpy.ndarray)\]\]</code> | Tags for hierarchical structure. Default is None. | <code>None</code>
+`y_insample` | <code>[Optional](#Optional)[[ndarray](#numpy.ndarray)]</code> | In-sample values of size (`base`, `horizon`). Default is None. | <code>None</code>
+`y_hat_insample` | <code>[Optional](#Optional)[[ndarray](#numpy.ndarray)]</code> | In-sample forecast values of size (`base`, `horizon`). Default is None. | <code>None</code>
+`sigmah` | <code>[Optional](#Optional)[[ndarray](#numpy.ndarray)]</code> | Estimated standard deviation of the conditional marginal distribution. Default is None. | <code>None</code>
+`intervals_method` | <code>[Optional](#Optional)[[str](#str)]</code> | Sampler for prediction intervals, one of `normality`, `bootstrap`, `permbu`, `conformal`. Default is None. | <code>None</code>
+`num_samples` | <code>[Optional](#Optional)[[int](#int)]</code> | Number of samples for probabilistic coherent distribution. Default is None. | <code>None</code>
+`seed` | <code>[Optional](#Optional)[[int](#int)]</code> | Seed for reproducibility. Default is None. | <code>None</code>
+`tags` | <code>[Optional](#Optional)[[dict](#dict)[[str](#str), [ndarray](#numpy.ndarray)]]</code> | Tags for hierarchical structure. Default is None. | <code>None</code>
 
 **Returns:**
 
@@ -225,18 +225,19 @@ Name | Type | Description | Default
 ---- | ---- | ----------- | -------
 `S` | <code>[ndarray](#numpy.ndarray)</code> | Summing matrix of size (`base`, `bottom`). | *required*
 `y_hat` | <code>[ndarray](#numpy.ndarray)</code> | Forecast values of size (`base`, `horizon`). | *required*
-`y_insample` | <code>[Optional](#Optional)\[[ndarray](#numpy.ndarray)\]</code> | In-sample values of size (`base`, `insample_size`). Default is None. | <code>None</code>
-`y_hat_insample` | <code>[Optional](#Optional)\[[ndarray](#numpy.ndarray)\]</code> | In-sample forecast values of size (`base`, `insample_size`). Default is None. | <code>None</code>
-`sigmah` | <code>[Optional](#Optional)\[[ndarray](#numpy.ndarray)\]</code> | Estimated standard deviation of the conditional marginal distribution. Default is None. | <code>None</code>
-`level` | <code>[Optional](#Optional)\[[list](#list)\[[int](#int)\]\]</code> | float list 0-100, confidence levels for prediction intervals. Default is None. | <code>None</code>
-`intervals_method` | <code>[Optional](#Optional)\[[str](#str)\]</code> | Sampler for prediction intervals, one of `normality`, `bootstrap`, `permbu`, `conformal`. Default is None. | <code>None</code>
-`num_samples` | <code>[Optional](#Optional)\[[int](#int)\]</code> | Number of samples for probabilistic coherent distribution. Default is None. | <code>None</code>
-`seed` | <code>[Optional](#Optional)\[[int](#int)\]</code> | Seed for reproducibility. Default is None. | <code>None</code>
-`tags` | <code>[Optional](#Optional)\[[dict](#dict)\[[str](#str), [ndarray](#numpy.ndarray)\]\]</code> | Tags for hierarchical structure. Default is None. | <code>None</code>
+`y_insample` | <code>[Optional](#Optional)[[ndarray](#numpy.ndarray)]</code> | In-sample values of size (`base`, `insample_size`). Default is None. | <code>None</code>
+`y_hat_insample` | <code>[Optional](#Optional)[[ndarray](#numpy.ndarray)]</code> | In-sample forecast values of size (`base`, `insample_size`). Default is None. | <code>None</code>
+`sigmah` | <code>[Optional](#Optional)[[ndarray](#numpy.ndarray)]</code> | Estimated standard deviation of the conditional marginal distribution. Default is None. | <code>None</code>
+`level` | <code>[Optional](#Optional)[[list](#list)[[int](#int)]]</code> | float list 0-100, confidence levels for prediction intervals. Default is None. | <code>None</code>
+`intervals_method` | <code>[Optional](#Optional)[[str](#str)]</code> | Sampler for prediction intervals, one of `normality`, `bootstrap`, `permbu`, `conformal`. Default is None. | <code>None</code>
+`num_samples` | <code>[Optional](#Optional)[[int](#int)]</code> | Number of samples for probabilistic coherent distribution. Default is None. | <code>None</code>
+`seed` | <code>[Optional](#Optional)[[int](#int)]</code> | Seed for reproducibility. Default is None. | <code>None</code>
+`tags` | <code>[Optional](#Optional)[[dict](#dict)[[str](#str), [ndarray](#numpy.ndarray)]]</code> | Tags for hierarchical structure. Default is None. | <code>None</code>
 
 **Returns:**
 
 Name | Type | Description
 ---- | ---- | -----------
 `y_tilde` | <code>[dict](#dict)</code> | Reconciliated y_hat using the Bottom Up approach.
+
 """

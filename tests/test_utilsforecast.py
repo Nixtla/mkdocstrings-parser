@@ -37,4 +37,5 @@ Name | Type | Description | Default
 Type | Description
 ---- | -----------
 <code>[IntoDataFrameT](#narwhals.stable.v2.typing.IntoDataFrameT)</code> | pandas or polars DataFrame: dataframe with one row per id and one column per model.
+
 """
