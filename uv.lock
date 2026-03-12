@@ -525,38 +525,8 @@ wheels = [
 
 [[package]]
 name = "bokeh"
-version = "3.4.3"
+version = "3.8.2"
 source = { registry = "https://pypi.org/simple" }
-resolution-markers = [
-    "python_full_version == '3.9.*'",
-]
-dependencies = [
-    { name = "contourpy", version = "1.3.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-    { name = "jinja2", marker = "python_full_version == '3.9.*'" },
-    { name = "numpy", version = "1.26.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-    { name = "packaging", marker = "python_full_version == '3.9.*'" },
-    { name = "pandas", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-    { name = "pillow", version = "11.3.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-    { name = "pyyaml", marker = "python_full_version == '3.9.*'" },
-    { name = "tornado", marker = "python_full_version == '3.9.*'" },
-    { name = "xyzservices", marker = "python_full_version == '3.9.*'" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/c1/a8/4f750e1febe3b8d448794a7b85cd0efd2eb649eb915c990bcdd3650a5f3b/bokeh-3.4.3.tar.gz", hash = "sha256:b7c22fb0f7004b04f12e1b7b26ee0269a26737a08ded848fb58f6a34ec1eb155", size = 6410715, upload-time = "2024-07-25T10:44:33.237Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/65/5d/e96520996607c9b894a4716ddedc447a68351b0a8729f26ac012c8e7041b/bokeh-3.4.3-py3-none-any.whl", hash = "sha256:c6f33817f866fc67fbeb5df79cd13a8bb592c05c591f3fd7f4f22b824f7afa01", size = 7017720, upload-time = "2024-07-25T10:44:29.542Z" },
-]
-
-[[package]]
-name = "bokeh"
-version = "3.8.1"
-source = { registry = "https://pypi.org/simple" }
-resolution-markers = [
-    "python_full_version == '3.11.*' and sys_platform == 'win32'",
-    "python_full_version == '3.10.*' and sys_platform == 'win32'",
-    "python_full_version >= '3.12'",
-    "python_full_version == '3.11.*' and sys_platform != 'win32'",
-    "python_full_version == '3.10.*' and sys_platform != 'win32'",
-]
 dependencies = [
     { name = "contourpy", version = "1.3.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.10.*'" },
     { name = "contourpy", version = "1.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
@@ -570,9 +540,9 @@ dependencies = [
     { name = "tornado", marker = "python_full_version >= '3.10' and sys_platform != 'emscripten'" },
     { name = "xyzservices", marker = "python_full_version >= '3.10'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/de/42/777c0627dbd78a2a7c6c6a1c3327e8a787ec99a4b84ae93245ce49c96af7/bokeh-3.8.1.tar.gz", hash = "sha256:40df8e632de367399d06979cbd76c9e68a133a3138e1adde37c4a4715ecb4d6e", size = 6529791, upload-time = "2025-11-07T20:50:59.565Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/e4/31/7ee0c4dfd0255631b0624ce01be178704f91f763f02a1879368eb109befd/bokeh-3.8.2.tar.gz", hash = "sha256:8e7dcacc21d53905581b54328ad2705954f72f2997f99fc332c1de8da53aa3cc", size = 6529251, upload-time = "2026-01-06T00:20:06.568Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/5d/e7/b18bee0772d49c0f78d57f15a68e85257abf7224d9b910706abe8bd1dc0f/bokeh-3.8.1-py3-none-any.whl", hash = "sha256:89a66cb8bfe85e91bce144e3ccf3c4a6f0f1347e7006282972568ea0ecacbb00", size = 7206137, upload-time = "2025-11-07T20:50:58.108Z" },
+    { url = "https://files.pythonhosted.org/packages/f6/a8/877f306720bc114c612579c5af36bcb359026b83d051226945499b306b1a/bokeh-3.8.2-py3-none-any.whl", hash = "sha256:5e2c0d84f75acb25d60efb9e4d2f434a791c4639b47d685534194c4e07bd0111", size = 7207131, upload-time = "2026-01-06T00:20:04.917Z" },
 ]
 
 [[package]]
@@ -1592,50 +1562,16 @@ name = "dask"
 version = "2.17.1"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
+    "python_full_version == '3.9.*'",
     "python_full_version < '3.9' and sys_platform == 'win32'",
     "python_full_version < '3.9' and sys_platform != 'win32'",
 ]
 dependencies = [
-    { name = "pyyaml", marker = "python_full_version < '3.9'" },
+    { name = "pyyaml", marker = "python_full_version < '3.10'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/92/21/d1714ad484b0736adc8be2b85f43f6f1f1b94e7f95a157f3eb579c5b624c/dask-2.17.1.tar.gz", hash = "sha256:6717877772974868f503b4215387fcb86cc8fd9e55ec042349aba69e21cb1aca", size = 2796430, upload-time = "2020-05-28T14:50:04.823Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/81/7c/054ab50438694fc7d6bb58c5bb254966b1e80ea8d5d456ae0426edeb547d/dask-2.17.1-py3-none-any.whl", hash = "sha256:e12c969c3af972999dc62fd3c34ad5b1934335981006455591f836f02e211e85", size = 813338, upload-time = "2020-05-28T14:49:58.523Z" },
-]
-
-[[package]]
-name = "dask"
-version = "2024.8.0"
-source = { registry = "https://pypi.org/simple" }
-resolution-markers = [
-    "python_full_version == '3.9.*'",
-]
-dependencies = [
-    { name = "click", version = "8.1.8", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-    { name = "cloudpickle", marker = "python_full_version == '3.9.*'" },
-    { name = "fsspec", version = "2025.10.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-    { name = "importlib-metadata", version = "8.7.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-    { name = "packaging", marker = "python_full_version == '3.9.*'" },
-    { name = "partd", marker = "python_full_version == '3.9.*'" },
-    { name = "pyyaml", marker = "python_full_version == '3.9.*'" },
-    { name = "toolz", marker = "python_full_version == '3.9.*'" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/1f/2e/568a422d907745a3a897a732c83d05a3923d8cfa2511a6abea2a0e19994e/dask-2024.8.0.tar.gz", hash = "sha256:f1fec39373d2f101bc045529ad4e9b30e34e6eb33b7aa0fa7073aec7b1bf9eee", size = 9895684, upload-time = "2024-08-06T20:23:54.464Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/db/47/136a5dd68a33089f96f8aa1178ccd545d325ec9ab2bb42a3038711a935c0/dask-2024.8.0-py3-none-any.whl", hash = "sha256:250ea3df30d4a25958290eec4f252850091c6cfaed82d098179c3b25bba18309", size = 1233681, upload-time = "2024-08-06T20:23:42.258Z" },
-]
-
-[package.optional-dependencies]
-complete = [
-    { name = "bokeh", version = "3.4.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-    { name = "dask-expr", version = "1.1.10", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-    { name = "distributed", version = "2024.8.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-    { name = "jinja2", marker = "python_full_version == '3.9.*'" },
-    { name = "lz4", marker = "python_full_version == '3.9.*'" },
-    { name = "numpy", version = "1.26.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-    { name = "pandas", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-    { name = "pyarrow", version = "21.0.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-    { name = "pyarrow-hotfix", marker = "python_full_version == '3.9.*'" },
 ]
 
 [[package]]
@@ -1666,9 +1602,9 @@ wheels = [
 
 [package.optional-dependencies]
 complete = [
-    { name = "bokeh", version = "3.8.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
-    { name = "dask-expr", version = "1.1.21", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
-    { name = "distributed", version = "2024.12.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
+    { name = "bokeh", marker = "python_full_version >= '3.10'" },
+    { name = "dask-expr", marker = "python_full_version >= '3.10'" },
+    { name = "distributed", marker = "python_full_version >= '3.10'" },
     { name = "jinja2", marker = "python_full_version >= '3.10'" },
     { name = "lz4", marker = "python_full_version >= '3.10'" },
     { name = "numpy", version = "1.26.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
@@ -1678,32 +1614,8 @@ complete = [
 
 [[package]]
 name = "dask-expr"
-version = "1.1.10"
-source = { registry = "https://pypi.org/simple" }
-resolution-markers = [
-    "python_full_version == '3.9.*'",
-]
-dependencies = [
-    { name = "dask", version = "2024.8.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-    { name = "pandas", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-    { name = "pyarrow", version = "21.0.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/af/d4/c34302c5c1350468a8793c5d6acae06e829f6a5f674145668b589e47107f/dask_expr-1.1.10.tar.gz", hash = "sha256:3d9ac7231f41ce7a109faaf855a60d89bd4f90d304452894178a114470164014", size = 221879, upload-time = "2024-08-06T20:23:53.013Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/2c/e3/cf7a05892b04b22b9e28ec25f8bc2acaa0304bf3128f76031e4363b63e21/dask_expr-1.1.10-py3-none-any.whl", hash = "sha256:c6365c6fa6d3e386c5ee79bd20d4c89e566c0cf78fb6c762f74b2f04028935c6", size = 242183, upload-time = "2024-08-06T20:23:50.115Z" },
-]
-
-[[package]]
-name = "dask-expr"
 version = "1.1.21"
 source = { registry = "https://pypi.org/simple" }
-resolution-markers = [
-    "python_full_version == '3.11.*' and sys_platform == 'win32'",
-    "python_full_version == '3.10.*' and sys_platform == 'win32'",
-    "python_full_version >= '3.12'",
-    "python_full_version == '3.11.*' and sys_platform != 'win32'",
-    "python_full_version == '3.10.*' and sys_platform != 'win32'",
-]
 dependencies = [
     { name = "dask", version = "2024.12.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
     { name = "pandas", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
@@ -1767,44 +1679,8 @@ wheels = [
 
 [[package]]
 name = "distributed"
-version = "2024.8.0"
-source = { registry = "https://pypi.org/simple" }
-resolution-markers = [
-    "python_full_version == '3.9.*'",
-]
-dependencies = [
-    { name = "click", version = "8.1.8", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-    { name = "cloudpickle", marker = "python_full_version == '3.9.*'" },
-    { name = "dask", version = "2024.8.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-    { name = "jinja2", marker = "python_full_version == '3.9.*'" },
-    { name = "locket", marker = "python_full_version == '3.9.*'" },
-    { name = "msgpack", version = "1.1.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-    { name = "packaging", marker = "python_full_version == '3.9.*'" },
-    { name = "psutil", marker = "python_full_version == '3.9.*'" },
-    { name = "pyyaml", marker = "python_full_version == '3.9.*'" },
-    { name = "sortedcontainers", marker = "python_full_version == '3.9.*'" },
-    { name = "tblib", marker = "python_full_version == '3.9.*'" },
-    { name = "toolz", marker = "python_full_version == '3.9.*'" },
-    { name = "tornado", marker = "python_full_version == '3.9.*'" },
-    { name = "urllib3", version = "2.5.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-    { name = "zict", marker = "python_full_version == '3.9.*'" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/61/09/f3640d43559876a8b9b03204e684ed3be259d04dd017260b002b6cfe8401/distributed-2024.8.0.tar.gz", hash = "sha256:b99caf0a7f257f59477a70a334e081c1241f7cd9860211cc669742e6450e1310", size = 1112136, upload-time = "2024-08-06T20:23:51.017Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/95/8a/d828dea3a1b6d7e796bebd8c64dc40d44d9a60762f759a11a61386eb38b5/distributed-2024.8.0-py3-none-any.whl", hash = "sha256:11af55d22dd6e04eb868b87f166b8f59ef1b300f659f87c016643b7f98280ec6", size = 1019423, upload-time = "2024-08-06T20:23:45.136Z" },
-]
-
-[[package]]
-name = "distributed"
 version = "2024.12.1"
 source = { registry = "https://pypi.org/simple" }
-resolution-markers = [
-    "python_full_version == '3.11.*' and sys_platform == 'win32'",
-    "python_full_version == '3.10.*' and sys_platform == 'win32'",
-    "python_full_version >= '3.12'",
-    "python_full_version == '3.11.*' and sys_platform != 'win32'",
-    "python_full_version == '3.10.*' and sys_platform != 'win32'",
-]
 dependencies = [
     { name = "click", version = "8.2.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
     { name = "cloudpickle", marker = "python_full_version >= '3.10'" },
@@ -4030,7 +3906,7 @@ wheels = [
 
 [package.optional-dependencies]
 dask = [
-    { name = "dask", version = "2024.8.0", source = { registry = "https://pypi.org/simple" }, extra = ["complete"], marker = "python_full_version == '3.9.*'" },
+    { name = "dask", version = "2.17.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
     { name = "dask", version = "2024.12.1", source = { registry = "https://pypi.org/simple" }, extra = ["complete"], marker = "python_full_version >= '3.10'" },
     { name = "fugue", version = "0.9.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
     { name = "lightgbm", marker = "python_full_version >= '3.9'" },
@@ -5452,8 +5328,8 @@ name = "partd"
 version = "1.4.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "locket", marker = "python_full_version >= '3.9'" },
-    { name = "toolz", marker = "python_full_version >= '3.9'" },
+    { name = "locket", marker = "python_full_version >= '3.10'" },
+    { name = "toolz", marker = "python_full_version >= '3.10'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/b2/3a/3f06f34820a31257ddcabdfafc2672c5816be79c7e353b02c1f318daa7d4/partd-1.4.2.tar.gz", hash = "sha256:d022c33afbdc8405c226621b015e8067888173d85f7f5ecebb3cafed9a20f02c", size = 21029, upload-time = "2024-05-06T19:51:41.945Z" }
 wheels = [
@@ -6397,15 +6273,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/ee/62/45abedde480168e83a1de005b7b7043fd553321c1e8c5a9a114425f64842/pyarrow-22.0.0-cp314-cp314t-musllinux_1_2_aarch64.whl", hash = "sha256:f633074f36dbc33d5c05b5dc75371e5660f1dbf9c8b1d95669def05e5425989c", size = 48066543, upload-time = "2025-10-24T10:09:34.908Z" },
     { url = "https://files.pythonhosted.org/packages/84/e9/7878940a5b072e4f3bf998770acafeae13b267f9893af5f6d4ab3904b67e/pyarrow-22.0.0-cp314-cp314t-musllinux_1_2_x86_64.whl", hash = "sha256:4c19236ae2402a8663a2c8f21f1870a03cc57f0bef7e4b6eb3238cc82944de80", size = 50288838, upload-time = "2025-10-24T10:09:44.394Z" },
     { url = "https://files.pythonhosted.org/packages/7b/03/f335d6c52b4a4761bcc83499789a1e2e16d9d201a58c327a9b5cc9a41bd9/pyarrow-22.0.0-cp314-cp314t-win_amd64.whl", hash = "sha256:0c34fe18094686194f204a3b1787a27456897d8a2d62caf84b61e8dfbc0252ae", size = 29185594, upload-time = "2025-10-24T10:09:53.111Z" },
-]
-
-[[package]]
-name = "pyarrow-hotfix"
-version = "0.7"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/d2/ed/c3e8677f7abf3981838c2af7b5ac03e3589b3ef94fcb31d575426abae904/pyarrow_hotfix-0.7.tar.gz", hash = "sha256:59399cd58bdd978b2e42816a4183a55c6472d4e33d183351b6069f11ed42661d", size = 9910, upload-time = "2025-04-25T10:17:06.247Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/2e/c3/94ade4906a2f88bc935772f59c934013b4205e773bcb4239db114a6da136/pyarrow_hotfix-0.7-py3-none-any.whl", hash = "sha256:3236f3b5f1260f0e2ac070a55c1a7b339c4bb7267839bd2015e283234e758100", size = 7923, upload-time = "2025-04-25T10:17:05.224Z" },
 ]
 
 [[package]]
