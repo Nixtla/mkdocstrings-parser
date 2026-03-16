@@ -22,10 +22,11 @@ loading order and optional automatic batching (collation) and memory pinning.
 
 Name | Type | Description | Default
 ---- | ---- | ----------- | -------
-`dataset` | | Dataset to load data from. | *required*
+`dataset` |  | Dataset to load data from. | *required*
 `batch_size` | <code>[int](#int)</code> | How many samples per batch to load. Defaults to 1. | *required*
 `shuffle` | <code>[bool](#bool)</code> | Set to True to have the data reshuffled at every epoch. Defaults to False. | *required*
 `sampler` | <code>[Sampler](#Sampler) or [Iterable](#Iterable)</code> | Defines the strategy to draw samples from the dataset. | *required*
 `drop_last` | <code>[bool](#bool)</code> | Set to True to drop the last incomplete batch. Defaults to False. | *required*
-`**kwargs` | | Additional keyword arguments for DataLoader. | <code>{}</code>
+`**kwargs` |  | Additional keyword arguments for DataLoader. | <code>{}</code>
+
 """
