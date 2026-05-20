@@ -19,16 +19,18 @@ dependencies = [
 dev = [
     "pytest",
     "pytest-cov",
+    "lightgbm<4.6"
 ]
 nixtlaverse = [
-    "coreforecast",
-    "utilsforecast",
-    "datasetsforecast",
-    "mlforecast",
-    "hierarchicalforecast",
-    "neuralforecast",
-    "statsforecast",
-    "nixtla"
+    "coreforecast@git+https://github.com/Nixtla/coreforecast.git",
+    "utilsforecast@git+https://github.com/Nixtla/utilsforecast.git",
+    "datasetsforecast@git+https://github.com/Nixtla/datasetsforecast.git",
+    "mlforecast[dask]@git+https://github.com/Nixtla/mlforecast.git",
+    "mlforecast@git+https://github.com/Nixtla/mlforecast.git",
+    "hierarchicalforecast@git+https://github.com/Nixtla/hierarchicalforecast.git@fix/docs",
+    "neuralforecast@git+https://github.com/Nixtla/neuralforecast.git",
+    "statsforecast@git+https://github.com/Nixtla/statsforecast.git",
+    "nixtla@git+https://github.com/Nixtla/nixtla.git"
 ]
 optional = ["pandas"]
 
