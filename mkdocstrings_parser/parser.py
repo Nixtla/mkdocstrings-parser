@@ -10,7 +10,6 @@ from griffe2md import ConfigDict, render_object_docs
 # Suppress griffe warnings
 logging.getLogger("griffe").setLevel(logging.ERROR)
 
-
 class MkDocstringsParser:
     def __init__(self):
         pass
@@ -136,6 +135,18 @@ class MkDocstringsParser:
             markdown_docs = render_object_docs(obj, config)  # type: ignore
 
             markdown_docs = markdown_docs.replace(f"### `{to_replace}.", "### `")
+            # Fix double backslashes in inline math equations
+            markdown_docs = re.sub(
+                r"\$([^$]+)\$",
+                lambda m: "$" + m.group(1).replace("\\\\", "\\") + "$",
+                markdown_docs
+            )
+            # Fix underscores in inline math equations
+            markdown_docs = re.sub(
+                r"\$([^$]+)\$",
+                lambda m: "$" + m.group(1).replace("\_", "_") + "$",
+                markdown_docs
+            )
 
             return markdown_docs
 
